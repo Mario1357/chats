@@ -13,8 +13,8 @@ const Login = () => {
     const password = e.target[1].value;
 
     try {
-      await signInWithEmailAndPassword(auth,email,password);
-      navigate("/homeChat")
+      await signInWithEmailAndPassword(auth, email, password);
+      navigate("/")
     } catch (err) {
       setErr(true);
     }
@@ -22,7 +22,7 @@ const Login = () => {
   return (
     <div className="formContainer">
       <div className="formWrapper">
-        <span className="logo">Lama Chat</span>
+        <span className="logo">TecNexus Chat</span>
         <span className="title">Login</span>
         <form onSubmit={handleSubmit}>
           <input type="email" placeholder="email" />
