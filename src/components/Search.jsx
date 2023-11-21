@@ -36,7 +36,7 @@ const SearchChat = () => {
     const handleSelect = async () => {
         //checar si existe el grupo (chats en el firestore) if not crear uno nuevo
         
-        const combinedId = currentUser.uid > user.uid ? currentUser.uid + user.uid : user.uid + currentUser.uid;
+        const combinedId = currentUser.id > user.id ? currentUser.id + user.id : user.id + currentUser.id;
            try {
                     const res = await getDoc(doc(db,"chats", combinedId));
             if(!res.exists()){
@@ -44,18 +44,18 @@ const SearchChat = () => {
                 await setDoc(doc(db,"chats", combinedId), {messages:[]});
 
                 //crear user chats
-               await updateDoc(doc(db, "userChats", currentUser.uid),{
+               await updateDoc(doc(db, "userChats", currentUser.id),{
                    [combinedId+".userInfo"]:{
-                       uid:user.uid,
+                       id:user.id,
                        displayName: user.displayName,
                        photoURL: user.photoURL
                    },
                    [combinedId+".date"]: serverTimestamp()
                });
 
-               await updateDoc(doc(db, "userChats", user.uid),{
+               await updateDoc(doc(db, "userChats", user.id),{
                 [combinedId+".userInfo"]:{
-                    uid:currentUser.uid,
+                    id:currentUser.id,
                     displayName: currentUser.displayName,
                     photoURL: currentUser.photoURL
                 },

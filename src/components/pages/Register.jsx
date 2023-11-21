@@ -36,15 +36,15 @@ const Register = () => {
               photoURL: downloadURL,
             });
             //create user on firestore
-            await setDoc(doc(db, "users", res.user.uid), {
-              uid: res.user.uid,
+            await setDoc(doc(db, "users", res.user.id), {
+              id: res.user.id,
               displayName,
               email,
               photoURL: downloadURL,
             });
 
             //create empty user chats on firestore
-            await setDoc(doc(db, "userChats", res.user.uid), {});
+            await setDoc(doc(db, "userChats", res.user.id), {});
             navigate("/");
           } catch (err) {
             console.log(err);
